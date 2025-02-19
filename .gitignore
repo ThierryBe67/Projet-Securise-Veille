@@ -1,0 +1,5 @@
+# Exclure les fichiers sensibles et dépendances
+config.php
+.env
+/vendor
+/node_modules
