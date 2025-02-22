@@ -1,0 +1,20 @@
+{
+    "name": "thier/projet-securise-uwamp2",
+    "description": "Projet-Veille",
+    "autoload": {
+        "psr-4": {
+            "Thier\\ProjetSecuriseUwamp2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ThierryBe67",
+            "email": "thierrybeller8@gmail.com"
+        }
+    ],
+    "require": {
+        "google/apiclient": "^2.14",
+        "google/apiclient-services": "^0.302.0",
+        "vlucas/phpdotenv": "^4.3"
+    }
+}
