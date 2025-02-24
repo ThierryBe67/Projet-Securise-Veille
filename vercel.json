@@ -4,6 +4,9 @@
       "runtime": "vercel-php@0.7.1"
     }
   },
+  "rewrites": [
+    { "source": "/(.*\\.php$)", "destination": "/api/$1" }
+  ],
   "headers": [
     {
       "source": "/(.*\\.php$)",
