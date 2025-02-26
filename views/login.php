@@ -6,6 +6,8 @@ require '../google-config.php';
 // Générer l'URL d'authentification Google
 $login_url = $client->createAuthUrl();
 
+$error = "";
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['mdp'];
@@ -36,18 +38,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Connexion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Site Sécurisé</title>
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <a href="../index.php"><button>Retour à l'accueil</button></a>
-    <h2>Connexion</h2>
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <form method="POST">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="mdp" placeholder="Mot de passe" required> <!-- Changé de "mdp" à "password" -->
-        <button type="submit">Se connecter</button>
-    </form>
-    <p>OU</p>
-    <a href="<?= $login_url ?>"><button>Se connecter avec Google</button></a>
+    <header>
+        <h1>Site Sécurisé</h1>
+    </header>
+    
+    <div class="container">
+        <nav>
+            <a href="../index.php">Accueil</a>
+            <a href="../register.php">Inscription</a>
+        </nav>
+        
+        <div class="form-container">
+            <h2 class="form-title">Connexion</h2>
+            
+            <?php if ($error): ?>
+                <div class="message message-error"><?php echo $error; ?></div>
+            <?php endif; ?>
+            
+            <form method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mdp">Mot de passe</label>
+                    <input type="password" id="mdp" name="mdp" placeholder="Votre mot de passe" required>
+                </div>
+                
+                <button type="submit" class="btn btn-full">Se connecter</button>
+            </form>
+            
+            <div class="separator">
+                <span>OU</span>
+            </div>
+            
+            <a href="<?= $login_url ?>" class="btn btn-google btn-full">
+                Se connecter avec Google
+            </a>
+            
+            <div class="separator">
+                <span>Pas encore de compte ?</span>
+            </div>
+            
+            <a href="../register.php" class="btn btn-success btn-full">Créer un compte</a>
+        </div>
+    </div>
 </body>
 </html>
